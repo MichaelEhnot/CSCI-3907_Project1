@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Project 1, Mike Ehnot
 
 You can use the [editor on GitHub](https://github.com/MichaelEhnot/CSCI-3907_Project1/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
