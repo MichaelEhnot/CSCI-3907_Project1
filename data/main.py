@@ -107,22 +107,22 @@ r = im[2*height: 3*height]
 #ar, x, y = align_ss(r, b, 15)
 
 # multi scale
-#ag = align_ms(g, b)
-#ar = align_ms(r, b)
+ag = align_ms(g, b)
+ar = align_ms(r, b)
 
 # create a color image
-#im_out = np.dstack([ar, ag, b])
+im_out = np.dstack([ar, ag, b])
 im_base = np.dstack([r,g,b])
 
-#im_out = remove_white_border(im_out)
+im_out = remove_white_border(im_out)
 
 # save the image
 #fname = '/out_path/out_fname.jpg'
-fname = 'base_'+imname
-skio.imsave(fname, im_base) #out
+fname = 'multi-scale__'+imname
+skio.imsave(fname, im_out)
 
 # display the image
 skio.imshow(im_base)
 plt.show()
-#skio.imshow(im_out)
-#plt.show()
+skio.imshow(im_out)
+plt.show()
