@@ -1,0 +1,328 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:.5in;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link="#0563C1" vlink="#954F72" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:18.0pt;line-height:106%'>Project 1, Images of the
+Prokudin-Gorskii Photo Collection</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:18.0pt;line-height:106%'>Mike Ehnot</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:18.0pt;line-height:106%'><a
+href="https://github.com/MichaelEhnot/CSCI-3907_Project1">https://github.com/MichaelEhnot/CSCI-3907_Project1</a>
+</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>&nbsp;</span></p>
+
+<p class=MsoListParagraph align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>This project combines three
+color-filtered grayscale images into one color image by aligning them on top of
+each other and assigning the appropriate color to each image. Similar to how 3
+channel images are used today.</span></p>
+
+<p class=MsoNormal><span style='font-size:12.0pt;line-height:106%'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=170 height=440
+id="Picture 1" src="index_files/image037.jpg"
+alt="A picture containing text, train, outdoor, track&#10;&#10;Description automatically generated"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>This is the original image. There are
+three separate images with a different color filter applied to each one.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=562 height=486
+id="Picture 2" src="index_files/image038.jpg"
+alt="A train on the railway tracks&#10;&#10;Description automatically generated with medium confidence"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>When you lay the images on top of each
+other and assign RGB channels, the colors are shown. This image is just each
+panel shifted up to the top one with no dynamic alignment. The goal of the
+project was to algorithmically align the panels</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:18.0pt;line-height:106%'>Single Scale</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>The first alignment algorithm is a simple
+single scale method. This algorithm tries every combination of two panels in a
+30-pixel range in the x and y directions and scores each alignment based off
+the sum of squared differences of the panels. The best scoring alignment is
+kept and returned from the function. This is done twice. The first alignment
+aligns the second panel with the first and the second alignment aligns the
+third panel with the first. Below are some of the before and after images from
+the single scale algorithm. Before is on the left and after is on the right.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=400 height=341
+id="Picture 4" src="index_files/image005.jpg"
+alt="A body of water with a city in the background&#10;&#10;Description automatically generated with medium confidence"><img
+border=0 width=400 height=341 id="Picture 3" src="index_files/image006.jpg"
+alt="A body of water with a building in the background&#10;&#10;Description automatically generated with low confidence"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=392 height=341
+id="Picture 7" src="index_files/image007.jpg"
+alt="A picture containing text, colorful&#10;&#10;Description automatically generated"><img
+border=0 width=392 height=341 id="Picture 5" src="index_files/image008.jpg"
+alt="A picture containing text, painting&#10;&#10;Description automatically generated"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=396 height=341
+id="Picture 9" src="index_files/image009.jpg"
+alt="A landscape with trees and a body of water in the background&#10;&#10;Description automatically generated with low confidence"><img
+border=0 width=396 height=341 id="Picture 8" src="index_files/image010.jpg"
+alt="A picture containing text, grass, picture frame&#10;&#10;Description automatically generated"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=395 height=341
+id="Picture 11" src="index_files/image011.jpg"
+alt="A picture containing text, colorful&#10;&#10;Description automatically generated"><img
+border=0 width=395 height=341 id="Picture 10" src="index_files/image012.jpg"
+alt="A picture containing text, grass, painting&#10;&#10;Description automatically generated"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=391 height=341
+id="Picture 13" src="index_files/image013.jpg"
+alt="A group of people in a garden&#10;&#10;Description automatically generated with medium confidence"><img
+border=0 width=391 height=341 id="Picture 12" src="index_files/image014.jpg"
+alt="A group of people in a field&#10;&#10;Description automatically generated with low confidence"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=395 height=341
+id="Picture 15" src="index_files/image015.jpg"
+alt="A picture containing text&#10;&#10;Description automatically generated"><img
+border=0 width=395 height=341 id="Picture 14" src="index_files/image016.jpg"
+alt="A picture containing text, colorful, drawing, painting&#10;&#10;Description automatically generated"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>Some look very good, and others only have
+a small improvement</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:18.0pt;line-height:106%'>Multi-Scale</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>The multi scale approach is for
+larger images where it takes a long time to compute the sum of squared
+differences. This algorithm starts by using the single scale alignment on a 25%
+resolution version of the image with a range of 20 pixels. This part can be
+computed quickly because the image is much smaller than the original. Then,
+another single scale alignment is done on a 50% resolution version of the image
+with a smaller range of 10 pixels and the previous alignment pre-applied before
+this alignment begins. Finally, a 5 pixel single-scale alignment is done on the
+full image with the previous two alignments pre-applied to the image. This
+method allows for a large range of alignments to be tested on a large image where
+the alignment between panels can be many pixels away.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>The multi scale alignment was used on
+images around 7-9 MB and a few small images for testing purposes. This
+algorithm would complete a large image in about a minute where the single scale
+algorithm would take too long.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=538 height=466
+id="Picture 17" src="index_files/image039.jpg"
+alt="A train on the railway tracks&#10;&#10;Description automatically generated with medium confidence"><img
+border=0 width=535 height=463 id="Picture 16" src="index_files/image040.jpg"
+alt="A train on the railway tracks&#10;&#10;Description automatically generated with medium confidence"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=397 height=341
+id="Picture 19" src="index_files/image021.jpg"
+alt="A picture containing text, store&#10;&#10;Description automatically generated"></span><span
+style='font-size:12.0pt;line-height:106%'> <img border=0 width=397 height=341
+id="Picture 20" src="index_files/image022.jpg"
+alt="A picture containing text, store, fresh, shop&#10;&#10;Description automatically generated"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=448 height=386
+id="Picture 22" src="index_files/image041.jpg"
+alt="A group of vases sit on a shelf&#10;&#10;Description automatically generated with medium confidence"><img
+border=0 width=433 height=372 id="Picture 21" src="index_files/image042.jpg"
+alt="A group of vases sit on a shelf&#10;&#10;Description automatically generated with medium confidence"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=398 height=341
+id="Picture 24" src="index_files/image027.jpg"
+alt="A picture containing text, colorful&#10;&#10;Description automatically generated"><img
+border=0 width=398 height=341 id="Picture 23" src="index_files/image028.jpg"
+alt="A picture containing text, boat, outdoor&#10;&#10;Description automatically generated"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=470 height=401
+id="Picture 26" src="index_files/image043.jpg"
+alt="A group of people on a roller coaster&#10;&#10;Description automatically generated with low confidence"><img
+border=0 width=458 height=390 id="Picture 25" src="index_files/image044.jpg"
+alt="A picture containing text, grass, outdoor, picture frame&#10;&#10;Description automatically generated"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=398 height=341
+id="Picture 28" src="index_files/image033.jpg"
+alt="A map of a city&#10;&#10;Description automatically generated with low confidence"><img
+border=0 width=398 height=341 id="Picture 27" src="index_files/image034.jpg"
+alt="A picture containing text, colorful, image, painting&#10;&#10;Description automatically generated"></span><span
+style='font-size:12.0pt;line-height:106%'> </span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>Similar results as the single scale,
+but multi-scale was actually able to process large images in reasonable time</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:18.0pt;line-height:106%'>Border Removal</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>As an extra feature, border removal
+was done on the images. A lot of the images had extra white borders around
+them, and the border removal changes those white borders into black borders
+that fit in with the image better. The algorithm analyzes a row to the image
+and for every pixel that is completely white, the whole column is turned black.
+This can be seen on many of the images above. You can tell where the artificial
+border ends and the image begins because there is usually a pure black area
+with the slightly off-white portion of the image next to it. The filter worked
+well on most images, but a few were messed up by the filter.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=458 height=390
+id="Picture 29" src="index_files/image045.jpg"
+alt="A picture containing text, grass, outdoor, picture frame&#10;&#10;Description automatically generated"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>Black boxes on the sides of the image</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'><img border=0 width=397 height=341
+id="Picture 30" src="index_files/image036.jpg"
+alt="A picture containing text, cage, store&#10;&#10;Description automatically generated"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>The filter had some artifacts in the
+middle</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>&nbsp;</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:18.0pt;line-height:106%'>Reflection</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>For the most part, all of the images
+were improved by both of the alignments. There are definitely still some images
+that look like they can be improved. My first thought about improving some
+would be to focus of the subject of the images. A lot of the landscape images
+look good because there is not one particular thing to look at, but a lot of
+the pictures with people or staged objects look off. I think this is because
+out focus is drawn to these parts more than other areas of the image that may
+be aligned better. The squared sum of differences is not biased to any area of
+the image, but maybe it should be. A further goal could be to adjust the
+matching metric to weight more important areas of the images like faces or
+objects in the center. This may help further improve some of these images.</span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span
+style='font-size:12.0pt;line-height:106%'>All pictures are in the Github repo.
+Unaligned images have the prefix ‘base’. Images from multi-scale have the
+prefix ‘multi-scale’ and single scale images have the prefix ‘single-scale’.
+Images where the border removal had to be turned off have ‘border’ in the name.</span></p>
+
+</div>
+
+</body>
+
+</html>
