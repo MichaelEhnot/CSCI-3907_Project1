@@ -64,6 +64,22 @@ def align_ss(u, v, rng):
     temp = np.roll(temp, bestY, axis=1)
     return temp, bestX, bestY
 
+# removes white borders from sides of image by checking how deep the border goes into one row and applying that length to the whole image
+def remove_white_border(im):
+    row = im.shape[0]
+    col = im.shape[1]
+    for y in range(col):
+            # if pixel is dark enough, set it to black border
+            if((im[10][y] >= [.9, .9, .9]).all()):
+                for x in range(row):
+                    im[x][y] = 0
+
+    return im
+
+#
+# Start of Program
+#
+
 # name of the input file
 #imname = './data/01047u.jpg'
 imname = input("Enter image name: ")
@@ -97,6 +113,8 @@ ar = align_ms(r, b)
 # create a color image
 im_out = np.dstack([ar, ag, b])
 im_base = np.dstack([r,g,b])
+
+im_out = remove_white_border(im_out)
 
 # save the image
 #fname = '/out_path/out_fname.jpg'
