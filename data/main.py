@@ -1,8 +1,6 @@
-# CS194-26 (CS294-26): Project 1 starter Python code
+# CSCI 3907: Project 1, Mike Ehnot
 
-# these are just some suggested libraries
-# instead of scikit-image you could use matplotlib and opencv to read, write, and display images
-
+from copyreg import remove_extension
 import numpy as np
 import skimage as sk
 import skimage.io as skio
@@ -40,6 +38,7 @@ def align_ms(u, v):
     print("100%")
 
     return al
+
 
 # find the best allignment of two channels, Single Scale, rng is the range of pixels the channels will slide in both directions
 # range should be positive
