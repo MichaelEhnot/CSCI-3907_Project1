@@ -9,8 +9,27 @@ import skimage.io as skio
 
 from matplotlib import pyplot as plt
 
+# find the best allignment of two channels
+def align(u, v):
+    # start with max value
+    lowScore = 999999999
+    for x in range(-15, 16):
+        for y in range(-15, 16):
+            temp = np.roll(u, x, axis=0)
+            temp = np.roll(temp, y, axis=1)
+            score = np.sum( (temp-v)**2)
+            if(score < lowScore):
+                lowScore = score
+                bestX = x
+                bestY = y
+    print('Best x: '+ str(bestX))
+    print('Best Y: '+ str(bestY))
+    temp = np.roll(u, bestX, axis=0)
+    temp = np.roll(temp, bestY, axis=1)
+    return temp
+
 # name of the input file
-imname = './data/00056v.jpg'
+imname = './data/01522v.jpg'
 
 # read in the image
 im = skio.imread(imname)
@@ -30,27 +49,19 @@ r = im[2*height: 3*height]
 # functions that might be useful for aligning the images include:
 # np.roll, np.sum, sk.transform.rescale (for multiscale)
 
-### ag = align(g, b)
-### ar = align(r, b)
+ag = align(g, b)
+ar = align(r, b)
 
 # create a color image
-#im_out = np.dstack([ar, ag, b])
-im_out = np.dstack([r,g,b])
+im_out = np.dstack([ar, ag, b])
+im_base = np.dstack([r,g,b])
 
 # save the image
 fname = '/out_path/out_fname.jpg'
 #skio.imsave(fname, im_out)
 
 # display the image
+skio.imshow(im_base)
+plt.show()
 skio.imshow(im_out)
 plt.show()
-
-#find the best allignment of two channels
-def allign(u, v):
-    for x in range(-15, 16):
-        for y in range(-15, 16):
-            temp = np.roll(v, x, axis=0)
-            temp = np.roll(v, y, axis=1)
-            score = np.sum( (u-v)**2)
-            if(score < lowScore):
-                lowScore = score
