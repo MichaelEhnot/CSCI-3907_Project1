@@ -10,26 +10,32 @@ import skimage.io as skio
 from skimage.transform import rescale
 from matplotlib import pyplot as plt
 
+# use a multi-scale approach to align larger images
 def align_ms(u, v):
     tempU = rescale(u, .25)
     tempV = rescale(v, .25)
 
+    # align a 25% resolution image with 20 pixel range
     al, x1, y1 = align_ss(tempU,tempV, 20)
     print("25%")
 
     tempU = rescale(u, .5)
     tempV = rescale(v, .5)
+    # apply previous shift to 50% scale image
     tempU = np.roll(tempU, (x1*2), axis=0)
     tempU = np.roll(tempU, (y1*2), axis=1)
 
+    # align 50% resolution image with 10 pixel range
     al, x2, y2 = align_ss(tempU,tempV, 10)
     print("50%")
 
     tempU = u
     tempV = v
+    # apply previous 2 results to full image
     tempU = np.roll(tempU, ((x2*2)+(x1*4)), axis=0)
     tempU = np.roll(tempU, ((y2*2)+(y1*4)), axis=1)
 
+    # do a final alignment over full image with 5 pixel range
     al, x, y = align_ss(tempU,tempV, 5)
     print("100%")
 
@@ -47,19 +53,21 @@ def align_ss(u, v, rng):
             temp = np.roll(u, x, axis=0)
             temp = np.roll(temp, y, axis=1)
             score = np.sum( (temp-v)**2)
+            # record the lowest match score
             if(score < lowScore):
                 lowScore = score
                 bestX = x
                 bestY = y
-    print('Best x: '+ str(bestX))
-    print('Best Y: '+ str(bestY))
+    #print('Best x: '+ str(bestX))
+    #print('Best Y: '+ str(bestY))
+    # recreate best score and return aligned image and shift
     temp = np.roll(u, bestX, axis=0)
     temp = np.roll(temp, bestY, axis=1)
     return temp, bestX, bestY
 
 # name of the input file
 #imname = './data/01047u.jpg'
-imname = input("Enter image path: ")
+imname = input("Enter image name: ")
 
 # read in the image
 im = skio.imread(imname)
@@ -92,8 +100,9 @@ im_out = np.dstack([ar, ag, b])
 im_base = np.dstack([r,g,b])
 
 # save the image
-fname = '/out_path/out_fname.jpg'
-#skio.imsave(fname, im_out)
+#fname = '/out_path/out_fname.jpg'
+fname = 'new_'+imname
+skio.imsave(fname, im_out)
 
 # display the image
 skio.imshow(im_base)
