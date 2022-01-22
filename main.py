@@ -9,8 +9,8 @@ import skimage.io as skio
 
 from matplotlib import pyplot as plt
 
-# find the best allignment of two channels
-def align(u, v):
+# find the best allignment of two channels, Single Scale
+def align_ss(u, v):
     # start with max value
     lowScore = 999999999
     for x in range(-15, 16):
@@ -29,7 +29,7 @@ def align(u, v):
     return temp
 
 # name of the input file
-imname = './data/01522v.jpg'
+imname = './data/31421v.jpg'
 
 # read in the image
 im = skio.imread(imname)
@@ -49,8 +49,8 @@ r = im[2*height: 3*height]
 # functions that might be useful for aligning the images include:
 # np.roll, np.sum, sk.transform.rescale (for multiscale)
 
-ag = align(g, b)
-ar = align(r, b)
+ag = align_ss(g, b)
+ar = align_ss(r, b)
 
 # create a color image
 im_out = np.dstack([ar, ag, b])
